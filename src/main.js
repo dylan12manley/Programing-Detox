@@ -3,6 +3,7 @@ import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 import { GiphyService } from './giphy.js';
+import { BikeService } from './BikeServices.js'
 
 $(document).ready(function() {
   $('#start').click(function() {
@@ -22,16 +23,14 @@ $(document).ready(function() {
     $('#bikeColorInput').val("");
     const bikeCity = $('#bikeCityInput').val();
     $('#bikeCityInput').val("");
-    const bikeYear = $('#bikeYearInput').val();
-    $('#bikeYearInput').val("");
 
     (async () => {
       let bikeService = new BikeService();
-      const response = await bikeService.getBike(bikeColor, bikeCity, bikeYear);
+      const response = await bikeService.getBike(bikeColor, bikeCity);
       getElements(response);
     })();
     function getElements(response) {
-      $('#showBikeNumber').html(response.?);
+      $('#showBikeNumber').html((response.bikes).length);
     }
 
   });
