@@ -4,10 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 import { GiphyService } from './giphy.js';
 
-
 $(document).ready(function() {
-  $('#weatherLocation').click(function() {
-
+  $('#start').click(function() {
 
     const giphyKeyword = $('#giphyKeyword').val();
     $('#giphyKeyword').val("");
@@ -18,11 +16,9 @@ $(document).ready(function() {
       getElements(response);
     })();
 
-
     function getElements(response) {
       $('#showGif').attr('src', response.data[0].images.original.url);
     }
-
   });
 });
 
