@@ -19,7 +19,8 @@ function arrayToStrings(practiceArray) {
 }
 
 $(document).ready(function() {
-  $('#start').click(function() {
+  $('form#userInput').submit(function() {
+    event.preventDefault();
     let randomNumber = Math.floor((Math.random()*10));
     let randomNumberTwo = Math.floor((Math.random()*30));
     const searchKeyword = $('#searchKeyword').val();
