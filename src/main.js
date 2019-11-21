@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 import { GiphyService } from './giphy.js';
 import { BikeService } from './BikeServices.js'
+import { KoanService } from './KoanServices.js'
 
 $(document).ready(function() {
   $('#start').click(function() {
@@ -32,6 +33,19 @@ $(document).ready(function() {
     function getBikeElements(response) {
       console.log(response.bikes.length);
       $('#show-bike-number').text(response.bikes.length).val();
+    }
+
+    const koenNumber = $('#koenInput').val();
+    $('#koenInput').val("");
+
+    (async () => {
+      let koen = new Koen();
+      let response = await koen.getKoen(koenNumber);
+      getKoen(response);
+    })();
+    function getKoen(response) {
+      console.log(response.bikes.length);
+      $('#showKoen').text(response.bikes.length).val();
     }
 
   });
