@@ -2,7 +2,6 @@ export class KoanService {
   async getKoan(koanNumber) {
     try {
       let response = await fetch(`http://poetrydb.org/title/${koanNumber}`);
-      console.log(response);
       if (response === "undefined") {
         console.log("Poem not found");
       }

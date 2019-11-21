@@ -33,10 +33,21 @@ $(document).ready(function() {
       getKoanElements(response);
     })();
     function getKoanElements(response) {
+      console.log(response.length);
       $(".results").show();
-      $('#showKoanAuthor').text(response[randomNumber].author).val();
-      $('#showKoanTitle').text(response[randomNumber].title).val();
-      $('#showKoanLines').html(arrayToStrings(response[randomNumber].lines)).val();
+      if (response.length === undefined) {
+        $('#showKoanAuthor').text("Please enter a more common keyword to recieve a poem.").val();
+        $('#showKoanTitle').text("").val();
+        $('#showKoanLines').html("").val();
+      } else if (response.length <= randomNumber) {
+        $('#showKoanAuthor').text(`Written by: ${response[response.length - 1].author}`).val();
+        $('#showKoanTitle').text(response[response.length - 1].title).val();
+        $('#showKoanLines').html(arrayToStrings(response[response.length - 1].lines)).val();
+      } else {
+        $('#showKoanAuthor').text(`Written by: ${response[randomNumber].author}`).val();
+        $('#showKoanTitle').text(response[randomNumber].title).val();
+        $('#showKoanLines').html(arrayToStrings(response[randomNumber].lines)).val();
+      }
     }
   });
 });

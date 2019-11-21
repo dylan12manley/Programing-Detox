@@ -1,18 +1,22 @@
 <html>
   <head>
+    <link href="https://fonts.googleapis.com/css?family=Alata|Raleway|Rubik&display=swap" rel="stylesheet">
     <title>API Practice</title>
   </head>
   <body>
     <div class="container">
+      <h2>Programing Detox</h2>
       <form id="userInput" >
         <input type="text" id="searchKeyword" placeholder="Enter Keyword">
         <button type="button" id="start">Start</button>
       </form>
       <div class="results">
         <img src="" id="showGif">
-        <h3>A poem by: <span id="showKoanAuthor"></span></h3>
+        <h3><span id="showKoanAuthor"></span></h3>
         <h4 id="showKoanTitle"></h4>
-        <p id="showKoanLines"></p>
+        <div class="paragraphs">
+          <p id="showKoanLines"></p>
+        </div>
       </div>
     </div>
   </body>
