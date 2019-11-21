@@ -5,6 +5,7 @@ import './styles.css';
 import { GiphyService } from './giphy.js';
 import { KoanService } from './KoanService.js'
 
+
 function arrayToStrings(practiceArray) {
   let mapVariable = practiceArray.map(function(i) {
     return "<p>" + i + "</p>"
@@ -14,30 +15,28 @@ function arrayToStrings(practiceArray) {
 
 $(document).ready(function() {
   $('#start').click(function() {
-
-    const giphyKeyword = $('#giphyKeyword').val();
-    $('#giphyKeyword').val("");
+    let randomNumber = Math.floor((Math.random()*10));
+    const searchKeyword = $('#searchKeyword').val();
+    $('#searchKeyword').val("");
     (async () => {
       let giphyService = new GiphyService();
-      const response = await giphyService.getGiphy(giphyKeyword);
+      const response = await giphyService.getGiphy(searchKeyword);
       getElements(response);
     })();
     function getElements(response) {
-      $('#showGif').attr('src', response.data[0].images.original.url);
+      $('#showGif').attr('src', response.data[randomNumber].images.original.url);
     }
 
-    const koanNumber = $('#koanInput').val();
-    $('#koanInput').val("");
     (async () => {
       let koan = new KoanService();
-      let response = await koan.getKoan(koanNumber);
+      let response = await koan.getKoan(searchKeyword);
       getKoanElements(response);
     })();
     function getKoanElements(response) {
-      console.log(response[0].lines);
-      $('#showKoanTitle').text(response[0].title).val();
-      $('#showKoanAuthor').text(response[0].author).val();
-      $('#showKoanLines').html(arrayToStrings(response[0].lines)).val();
+      $(".results").show();
+      $('#showKoanAuthor').text(response[randomNumber].author).val();
+      $('#showKoanTitle').text(response[randomNumber].title).val();
+      $('#showKoanLines').html(arrayToStrings(response[randomNumber].lines)).val();
     }
   });
 });
