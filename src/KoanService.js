@@ -1,9 +1,8 @@
 export class KoanService {
-  async getBike(koanNumber) {
+  async getKoan(koanNumber) {
     try {
-      let response = await fetch(`https://fastapi.metacpan.org/source/LUKEC/Zen-Koans-0.05/lib/Zen/Koans.pm`);
-      console.log(response);
-      let jsonifiedResponse = await JSON.parse(response.json());
+      let response = await fetch(`http://poetrydb.org/title/${koanNumber}`);
+      let jsonifiedResponse = await response.json();
       // const response = JSON.parse(this.response);
       console.log(jsonifiedResponse);
       return jsonifiedResponse;
