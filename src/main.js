@@ -27,10 +27,11 @@ $(document).ready(function() {
     (async () => {
       let bikeService = new BikeService();
       const response = await bikeService.getBike(bikeColor, bikeCity);
-      getElements(response);
+      getBikeElements(response);
     })();
-    function getElements(response) {
-      $('#showBikeNumber').html((response.bikes).length);
+    function getBikeElements(response) {
+      console.log(response.bikes.length);
+      $('#show-bike-number').text(response.bikes.length).val();
     }
 
   });
