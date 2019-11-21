@@ -21,6 +21,7 @@ function arrayToStrings(practiceArray) {
 $(document).ready(function() {
   $('#start').click(function() {
     let randomNumber = Math.floor((Math.random()*10));
+    let randomNumberTwo = Math.floor((Math.random()*30));
     const searchKeyword = $('#searchKeyword').val();
     $('#searchKeyword').val("");
     (async () => {
@@ -58,13 +59,11 @@ $(document).ready(function() {
     (async () => {
       let backgroundService = new BackgroundService();
       const response = await backgroundService.getBackground(searchKeyword);
-      console.log(response);
       getBackgroundElements(response);
     })();
 
     function getBackgroundElements(response) {
-      const url = response[randomNumber].urls.raw;
-      console.log(url);
+      const url = response[randomNumberTwo].urls.regular;
       // $('#showGif').attr('src', response.data[randomNumber].images.original.url);
       $("body").css("background-image", `url(${url})`);
     }

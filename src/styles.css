@@ -1,8 +1,12 @@
 body {
   text-align: center;
   font-family: 'Raleway', sans-serif;
+  background: no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   background-color: #E4D6A7;
-  background-repeat: no-repeat;
 }
 button#start {
   background-color: #629DB2;
