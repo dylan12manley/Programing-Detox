@@ -4,11 +4,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css';
 import { GiphyService } from './giphy.js';
 import { KoanService } from './KoanService.js'
+import { BackgroundService } from './BackgroundService.js'
 
 
 function arrayToStrings(practiceArray) {
   let mapVariable = practiceArray.map(function(i) {
+    if (i === "") {
+      return "<br>";
+    } else {
     return "<p>" + i + "</p>"
+  }
   });
   return mapVariable;
 }
@@ -33,7 +38,6 @@ $(document).ready(function() {
       getKoanElements(response);
     })();
     function getKoanElements(response) {
-      console.log(response.length);
       $(".results").show();
       if (response.length === undefined) {
         $('#showKoanAuthor').text("Please enter a more common keyword to recieve a poem.").val();
@@ -44,10 +48,26 @@ $(document).ready(function() {
         $('#showKoanTitle').text(response[response.length - 1].title).val();
         $('#showKoanLines').html(arrayToStrings(response[response.length - 1].lines)).val();
       } else {
-        $('#showKoanAuthor').text(`Written by: ${response[randomNumber].author}`).val();
+        $('#showKoanAuthor').text(`Poem by: ${response[randomNumber].author}`).val();
         $('#showKoanTitle').text(response[randomNumber].title).val();
         $('#showKoanLines').html(arrayToStrings(response[randomNumber].lines)).val();
       }
     }
+
+
+    (async () => {
+      let backgroundService = new BackgroundService();
+      const response = await backgroundService.getBackground(searchKeyword);
+      console.log(response);
+      getBackgroundElements(response);
+    })();
+
+    function getBackgroundElements(response) {
+      const url = response[randomNumber].urls.raw;
+      console.log(url);
+      // $('#showGif').attr('src', response.data[randomNumber].images.original.url);
+      $("body").css("background-image", `url(${url})`);
+    }
+
   });
 });
